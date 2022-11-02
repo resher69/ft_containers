@@ -49,6 +49,7 @@ class vector {
 		this->assign(count, value);
 	}
 
+	//SFINAE
 	template<class InputIterator>
 	explicit vector(InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type(),
 		typename ft::enable_if<!ft::is_integral<InputIterator>::value >::type* = 0)
@@ -85,6 +86,7 @@ class vector {
 		}
 	}
 
+	//SFINAE
 	template<class InputIterator>
 	void assign(InputIterator first,
 		typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator >::type last)
@@ -105,7 +107,7 @@ class vector {
 
 	allocator_type get_allocator() const
 	{
-		return allocator_type();
+		return _allocator;
 	}
 
 	#pragma region Element_access
